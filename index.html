@@ -12,14 +12,13 @@
       }
       .produce {
         height: 18vh;
-        min-width: 450px;
       }
       .produce-name {
         color: white;
         font-family: Tahoma, Geneva, sans-serif;
         font-weight: bold;
         text-align: center;
-        font-size: 7vh;
+        font-size: 100px;
         padding-top: 4vh;
         word-wrap: break-word;
         vertical-align: middle;
@@ -28,6 +27,13 @@
         float: left;
         padding-top: 4.5vh;
         padding-left: 3vw;
+        height: 128px;
+        width: 128px;
+      }
+      @media (max-width: 320px) {
+        .produce-name {
+          font-size: 80px;
+        }
       }
     </style>
   </head>
