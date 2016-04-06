@@ -785,10 +785,15 @@ var months = [
   "August", "September", "October", "November",  "December",
 ]
 
-now = new Date()
-day = now.getDate()
-month = now.getMonth()
-isTodayInSeason = isDateInSeason.bind(this, month, day)
+var now = new Date()
+var day = now.getDate()
+var month = now.getMonth()
+var isTodayInSeason = isDateInSeason.bind(this, month, day)
+// Thanks d3 :)
+var colors = [
+  '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+  '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+]
 
 for (var i = 0; i < PRODUCE.length; i++) {
   var item = PRODUCE[i]
@@ -797,9 +802,13 @@ for (var i = 0; i < PRODUCE.length; i++) {
   }
   var el = document.createElement("div")
   var icon = document.createElement("img")
+  var text = document.createElement("div")
   icon.src = "assets/" + (item["icon"] || "default.png")
-  el.class = "produce"
-  el.textContent = item["name"]
+  text.textContent = item["name"]
+  text.className = "produce-name"
+  el.className = "produce"
+  el.style.backgroundColor = colors[i % colors.length]
   el.appendChild(icon)
+  el.appendChild(text)
   document.body.appendChild(el)
 }
