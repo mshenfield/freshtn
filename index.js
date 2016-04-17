@@ -794,7 +794,7 @@ var colors = [
   '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
   '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
 ]
-
+var colorIndex = 0;
 for (var i = 0; i < PRODUCE.length; i++) {
   var item = PRODUCE[i]
   if (!item["seasons"].some(isTodayInSeason)) {
@@ -807,8 +807,9 @@ for (var i = 0; i < PRODUCE.length; i++) {
   text.textContent = item["name"]
   text.className = "produce-name"
   el.className = "produce"
-  el.style.backgroundColor = colors[i % colors.length]
+  el.style.backgroundColor = colors[colorIndex % colors.length]
   el.appendChild(icon)
   el.appendChild(text)
   document.body.appendChild(el)
+  colorIndex += 1
 }
