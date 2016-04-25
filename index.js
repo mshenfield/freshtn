@@ -781,7 +781,7 @@ function isDateInSeason(month, day, seasonObject) {
 }
 
 var months = [
-  "January", "February", "March", "April", "June", "July",
+  "January", "February", "March", "April", "May", "June", "July",
   "August", "September", "October", "November",  "December",
 ]
 
@@ -794,6 +794,11 @@ var colors = [
   '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
   '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
 ]
+// Added some slightly darker colors for the bottom border
+var borderColors = [
+  '#0D47A1', '#E65100', '#1B5E20', '#B71C1C', '#4A148C',
+  '#3E2723', '#AD1457', '#424242', '#558B2F', '#0277BD',
+]
 var colorIndex = 0;
 for (var i = 0; i < PRODUCE.length; i++) {
   var item = PRODUCE[i]
@@ -801,15 +806,46 @@ for (var i = 0; i < PRODUCE.length; i++) {
     continue
   }
   var el = document.createElement("div")
+  var circle = document.createElement("div")
   var icon = document.createElement("img")
   var text = document.createElement("div")
+  var season = document.createElement("div")
+  var linkContainer = document.createElement("div")
+  var link = document.createElement("a")
+  
   icon.src = "assets/" + (item["icon"] || "default.png")
+ 
   text.textContent = item["name"]
   text.className = "produce-name"
-  el.className = "produce"
-  el.style.backgroundColor = colors[colorIndex % colors.length]
-  el.appendChild(icon)
+  
+  season.textContent = months[item["seasons"][0]["seasonStartMonth"] - 1] + " - " + months[item["seasons"][0]["seasonEndMonth"] - 1]
+  season.className = "season-range"
+  
+  
+  circle.className = "circle"
+  circle.appendChild(icon)
+  
+  el.appendChild(circle)
   el.appendChild(text)
+  el.appendChild(season)
+  
+  // If the produce has a link to local farm website, add it to the element
+  /*
+  if (item["link"]) {
+	link.innerHTML = "FIND LOCAL FARMS"
+	link.setAttribute("href", item["link"])
+	link.setAttribute("target", "_blank")
+	linkContainer.className = "link"
+	linkContainer.appendChild(link)
+	el.appendChild(linkContainer)
+  }
+  */
+  
+  el.style.backgroundColor = colors[colorIndex % colors.length]
+  el.style.borderColor = borderColors[colorIndex % colors.length]
+  el.className = "produce col-xs-12"
+  
   document.body.appendChild(el)
+  
   colorIndex += 1
 }
