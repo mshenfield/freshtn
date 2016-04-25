@@ -800,6 +800,9 @@ var borderColors = [
   '#3E2723', '#AD1457', '#424242', '#558B2F', '#0277BD',
 ]
 var colorIndex = 0;
+var row = document.createElement("div")
+row.className = "row"
+
 for (var i = 0; i < PRODUCE.length; i++) {
   var item = PRODUCE[i]
   if (!item["seasons"].some(isTodayInSeason)) {
@@ -825,10 +828,8 @@ for (var i = 0; i < PRODUCE.length; i++) {
   circle.className = "circle"
   circle.appendChild(icon)
   
-  el.appendChild(circle)
-  el.appendChild(text)
-  el.appendChild(season)
   
+
   // If the produce has a link to local farm website, add it to the element
   /*
   if (item["link"]) {
@@ -845,7 +846,17 @@ for (var i = 0; i < PRODUCE.length; i++) {
   el.style.borderColor = borderColors[colorIndex % colors.length]
   el.className = "produce col-xs-12"
   
-  document.body.appendChild(el)
+  el.appendChild(circle)
+  el.appendChild(text)
+  el.appendChild(season)
+  
+  row.appendChild(el)
   
   colorIndex += 1
 }
+  
+  var container = document.createElement("div")
+  container.className = "container-fluid"
+  container.appendChild(row)
+
+  document.body.appendChild(container)
