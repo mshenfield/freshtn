@@ -828,20 +828,6 @@ for (var i = 0; i < PRODUCE.length; i++) {
   circle.className = "circle"
   circle.appendChild(icon)
   
-  
-
-  // If the produce has a link to local farm website, add it to the element
-  /*
-  if (item["link"]) {
-	link.innerHTML = "FIND LOCAL FARMS"
-	link.setAttribute("href", item["link"])
-	link.setAttribute("target", "_blank")
-	linkContainer.className = "link"
-	linkContainer.appendChild(link)
-	el.appendChild(linkContainer)
-  }
-  */
-  
   el.style.backgroundColor = colors[colorIndex % colors.length]
   el.style.borderColor = borderColors[colorIndex % colors.length]
   el.className = "produce col-xs-12"
